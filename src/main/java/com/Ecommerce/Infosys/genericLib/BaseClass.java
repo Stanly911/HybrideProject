@@ -1,5 +1,7 @@
 package com.Ecommerce.Infosys.genericLib;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -24,6 +26,8 @@ public class BaseClass
 	public ExtentHtmlReporter htmlreport ;
 	public static ExtentReports reports;
 	public static ExtentTest test;
+	public WebdriverUtilites utilies = new WebdriverUtilites();
+	public FileUtilities fu = new FileUtilities();
 	
 	@BeforeSuite 
 	public void configBS()
@@ -36,12 +40,12 @@ public class BaseClass
 	}
 
 	@BeforeMethod
-	public void openApp()
+	public void openApp() throws FileNotFoundException, IOException
 	{
 		WebDriverManager.chromedriver().setup();
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
-		driver.get("");
+		driver.get(fu.getPropertyFile("url"));
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}
 	
