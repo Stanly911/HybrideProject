@@ -10,9 +10,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Properties;
 
-import org.apache.poi.EncryptedDocumentException;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.ss.usermodel.WorkbookFactory;
 import org.testng.Reporter;
 
 import com.mysql.jdbc.Driver;
@@ -21,7 +18,7 @@ import com.mysql.jdbc.Driver;
  * @author SUBHADEEP MALLICK
  *
  */
-public class FileUtilities 
+public class FileUtilities
 { 
 	
 	public static Connection con;
@@ -40,23 +37,7 @@ public class FileUtilities
 		p.load(new FileInputStream(AutoConstant.datapropertyFile));
 		return p.getProperty(key);
 	}
-	
-	/**
-	 * To read the data from excel Sheet
-	 * @param sheetname
-	 * @param rownum
-	 * @param cellnum
-	 * @return
-	 * @throws EncryptedDocumentException
-	 * @throws IOException
-	 */
-	public String getExcelFile(String sheetname, int rownum, int cellnum) throws EncryptedDocumentException, IOException
-	{
-		FileInputStream fis = new FileInputStream(AutoConstant.excelFilePath);
-		Workbook wb = WorkbookFactory.create(fis);
-		return wb.getSheet("SheetName").getRow(rownum).getCell(cellnum).getStringCellValue();
-	}
-	
+
 	/**
 	 * It is used to read the data from database
 	 * @return
@@ -93,5 +74,10 @@ public class FileUtilities
 			}
 		}
 		return expdata;
+	}
+	
+	public static void closedb() throws SQLException 
+	{
+		con.close();
 	}
 }

@@ -20,6 +20,15 @@ public class LoginPage
 	@FindBy(xpath="(//a[text()=' SkillRary Demo APP'])[2]")
 	private WebElement skillrarydemoapp;
 	
+	@FindBy(xpath="//a[text()=' Contact Us ']")
+	private WebElement contactus;
+	
+	@FindBy(name="q")
+	private WebElement searchtb;
+	
+	@FindBy(xpath="//input[@value='go']")
+	private WebElement gobtn;
+	
 	public LoginPage(WebDriver driver)
 	{
 		PageFactory.initElements(driver,this);
@@ -34,6 +43,19 @@ public class LoginPage
 		skillrarydemoapp.click();
 		return new SkillraryDemoLoginPage(driver);
 	}
+
+	public ContactUsPage contact(WebDriver driver)
+	{
+		contactus.click();
+		return new ContactUsPage(driver);
+	}
+	
+	public CorejavaPage searchcourse(WebDriver driver,String courseName)
+	{
+		searchtb.sendKeys(courseName);
+		gobtn.click();
+		return new CorejavaPage(driver);
+	}
 	
 	public WebElement getGearsbtn() {
 		return gearsbtn;
@@ -41,5 +63,17 @@ public class LoginPage
 
 	public WebElement getSkillrarydemoapp() {
 		return skillrarydemoapp;
+	}
+
+	public WebElement getContactus() {
+		return contactus;
+	}
+
+	public WebElement getGobtn() {
+		return gobtn;
+	}
+
+	public WebElement getSearchtb() {
+		return searchtb;
 	}
 }

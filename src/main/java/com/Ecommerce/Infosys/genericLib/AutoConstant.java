@@ -10,8 +10,8 @@ public interface AutoConstant
 	/**
 	 * It is used to store all the constants
 	 */
-	String datapropertyFile = "./data.properties";
-	String excelFilePath = "./src/test/resources/excel.xlsx";
+	String datapropertyFile = "./src/test/resources/data.properties";
+	String excelFilePath = "./src/test/resources/Book1.xlsx";
 	String photoPath = "./Photo";
-	String reportPath = "./Reports";
+	String reportPath = "./Reports/skillraryreport.html";
 }

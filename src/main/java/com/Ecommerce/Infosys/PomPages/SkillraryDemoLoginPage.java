@@ -13,6 +13,9 @@ public class SkillraryDemoLoginPage
 	@FindBy(xpath="//a[text()='Selenium Training']")
 	private WebElement seleniumtraining;
 	
+	@FindBy(name = "addresstype")
+	private WebElement coursedd;
+	
 	public SkillraryDemoLoginPage(WebDriver driver)
 	{
 		PageFactory.initElements(driver,this);
@@ -30,5 +33,9 @@ public class SkillraryDemoLoginPage
 	{
 		seleniumtraining.click();
 		return new AddtocartPage(driver);
+	}
+
+	public WebElement getCoursedd() {
+		return coursedd;
 	}
 }

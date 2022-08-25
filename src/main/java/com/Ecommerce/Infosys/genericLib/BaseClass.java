@@ -2,6 +2,8 @@ package com.Ecommerce.Infosys.genericLib;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
@@ -28,10 +30,14 @@ public class BaseClass
 	public static ExtentTest test;
 	public WebdriverUtilites utilies = new WebdriverUtilites();
 	public FileUtilities fu = new FileUtilities();
+	public static Connection con;
 	
 	@BeforeSuite 
-	public void configBS()
+	public void configBS() throws SQLException
 	{
+		System.out.println("Connect to database");
+		con = fu.getDataDb();
+		
 		htmlreport = new ExtentHtmlReporter(AutoConstant.reportPath);
 		htmlreport.config().setDocumentTitle("Skillrary Report");
 		htmlreport.config().setTheme(Theme.DARK);
@@ -50,7 +56,7 @@ public class BaseClass
 	}
 	
 	@AfterMethod
-	public void closeApp(ITestResult res) 
+	public void closeApp(ITestResult res) throws IOException 
 	{
 		int result = res.getStatus();
 		if(result == ITestResult.FAILURE)
@@ -66,13 +72,23 @@ public class BaseClass
 		{
 			test.log(Status.SKIP,res.getName()+"testcase is skipped");
 		}
+		
+		String name = res.getName();
+		if(result == 2)
+		{
+			Photo p = new Photo();
+			p.screenshot(driver, name);
+		}
+		
 		driver.quit();
 	}
 	
 	@AfterSuite
-	public void configAS()
+	public void configAS() throws SQLException
 	{
-		htmlreport.flush(null);
+		htmlreport.flush();
 		reports.flush();
+		fu.closedb();
+		System.out.println("database is closed");
 	}
 }

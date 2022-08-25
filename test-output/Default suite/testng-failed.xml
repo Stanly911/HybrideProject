@@ -3,15 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.Ecommerce.Infosys.Scripts.Testcase1">
+      <class name="com.Ecommerce.Infosys.Scripts.TestCase3">
         <methods>
           <include name="configAS"/>
-          <include name="testcase1"/>
           <include name="configBS"/>
+          <include name="tc3"/>
           <include name="closeApp"/>
           <include name="openApp"/>
         </methods>
-      </class> <!-- com.Ecommerce.Infosys.Scripts.Testcase1 -->
+      </class> <!-- com.Ecommerce.Infosys.Scripts.TestCase3 -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
