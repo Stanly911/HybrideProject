@@ -12,6 +12,6 @@ public interface AutoConstant
 	 */
 	String datapropertyFile = "./src/test/resources/data.properties";
 	String excelFilePath = "./src/test/resources/Book1.xlsx";
-	String photoPath = "./Photo";
+	String photoPath = "./Photo/";
 	String reportPath = "./Reports/skillraryreport.html";
 }
